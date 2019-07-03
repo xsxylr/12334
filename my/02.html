@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./lib/bootstrap-3.3.7.css">
+    <script src="./lib/vue-2.4.0.js"></script>
+    <style>
+        #app {
+            padding: 180px 100px;
+        }
+        
+        #app1 button {
+            margin-top: 10px;
+            margin-left: 50%;
+        }
+        
+        .app1 {
+            position: absolute;
+            top: 111px;
+            left: 222px;
+            font-size: 100px;
+            text-align: center;
+            color: pink;
+        }
+        
+        .aaa {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="app1">
+        <button type="button" class="btn btn-danger" @click="jishi">点我开始</button>
+        <button type="button" class="btn btn-danger" @click="ting">点我停止</button>
+        <div class="app1" :class="{aaa:flas}">{{msg | dateFilter('abc')}}</div>
+    </div> -->
+    <div id="app">
+
+        <div class="panel panel-primary">
+            <!-- Default panel contents -->
+            <div class="panel-heading">添加品牌</div>
+            <div class="panel-body">
+                <form class="form-inline bg-warning">
+                    <div class="form-group">
+                        <label for="exampleInputName2">ID</label>
+                        <input type="text" class="form-control" id="exampleInputName2" placeholder="请输入ID" v-model="id">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Name</label>
+                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入Name" v-model="name" @keyup.f2="add">
+                    </div>
+                    <button class="btn btn-primary" @click.prevent="add" type="button" @keyup.f2='add'>添加</button>
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">搜索关键字</label>
+                        <input type="email" class="form-control" id="exampleInputEmail3" placeholder="请输入搜索关键字" v-model="key" v-focus>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Table -->
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr class="bg-info">
+                        <th>序号</th>
+                        <th>品牌</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(value,index) in seach(key)">
+                        <td>{{value.id}}</td>
+                        <td>{{value.name}}</td>
+                        <td>{{value.time | dateFilter}}</td>
+                        <td><a href="JavaScript:;" class="btn btn-danger" @click="shanchu(index)">删除</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <script>
+        Vue.filter('dateFilter', function(argc) {
+
+        })
+        Vue.config.keyCodes.f2 = 113;
+        Vue.directive('focus', {
+            bind: function(el) {
+                // console.log(123);
+            },
+            inserted: function(el) {
+                el.focus();
+            },
+            updated: function(el) {
+
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                key: '',
+                arr: [{
+                    id: 1,
+                    name: '奔驰',
+                    time: new Date()
+                }, {
+                    id: 2,
+                    name: '宝马',
+                    time: new Date()
+                }, {
+                    id: 3,
+                    name: '五菱宏光',
+                    time: new Date()
+                }, {
+                    id: 4,
+                    name: '自行车',
+                    time: new Date()
+                }]
+            },
+            methods: {
+                seach(keyword) {
+                    return this.arr.filter(function(item) {
+                        return item.name.indexOf(keyword) != -1;
+                    })
+                },
+                add() {
+                    if (this.id.trim() && this.name.trim()) {
+                        this.arr.unshift({
+                            id: this.id.trim(),
+                            name: this.name.trim(),
+                            time: new Date()
+                        });
+                        this.id = '';
+                        this.name = '';
+                    }
+
+                },
+                shanchu(index) {
+                    this.arr.splice(index, 1)
+                }
+
+            },
+            filters: {
+                dateFilter: function(argc) {
+                    return argc + '';
+                }
+            },
+            directives: {
+                focus: {
+                    inserted: function(el) {
+                        el.focus()
+                    }
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
