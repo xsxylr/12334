@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../code/lib/vue-2.4.0.js"></script>
+    <style>
+        div {
+            width: 100%;
+            height: 1000px;
+        }
+        
+        body .eee {
+            background-color: blueviolet;
+        }
+        
+        .wwww {
+            background-color: palegreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="wwww" :class="qqqq">
+        <!-- <div :style="qqqq"></div> -->
+        <button @click="aaa" :disabled="dj">按钮</button>
+        <button @click="ttt">取消</button>
+    </div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+
+            qqqq: {
+                eee: null,
+            },
+            oooo: null,
+            dj: undefined
+        },
+        methods: {
+            aaa() {
+                this.oooo = setInterval(() => {
+                    this.qqqq.eee = !this.qqqq.eee
+                }, 1);
+                this.dj = true;
+                // this.wwww.rrr = !this.wwww.rrr
+            },
+            ttt() {
+                clearInterval(this.oooo)
+                this.dj = false;
+            }
+        }
+    })
+</script>
+
+</html>

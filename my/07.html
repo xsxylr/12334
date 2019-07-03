@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../code/lib/vue-2.4.0.js"></script>
+    <style>
+        #app {
+            height: 500px;
+        }
+        
+        .one {
+            height: 500px;
+            text-align: center;
+        }
+        
+        .one div {
+            width: 50%;
+            height: 100%;
+            float: left;
+        }
+        /* .one div:nth-child(1) {
+            background-color: #ccc;
+        }
+        
+        .one div:nth-child(2) {
+            background-color: #006699;
+        } */
+        
+        .red {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="one" :class="{red: f}">
+            <div><button @click="kais">开始</button></div>
+            <div><button>取消</button></div>
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                f: null
+            },
+            methods: {
+                kais() {
+                    this.f = !this.f
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

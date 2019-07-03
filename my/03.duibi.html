@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../code/lib/vue-2.4.0.js"></script>
+    <style>
+        #one {
+            padding: 40px;
+            background-color: #ccc;
+        }
+        
+        #tow {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="one" @click.capture="one">
+        <div id="tow" @click.self="tow">
+            <button @click.once="ss">
+                123
+            </button>
+        </div>
+        <a href="http//www.baidu.com" @click.once="ss">123</a>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#one',
+            methods: {
+                one() {
+                    console.log(111);
+                },
+                tow() {
+                    console.log(222);
+                },
+                ss() {
+                    console.log(333);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

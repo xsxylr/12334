@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../code/lib/vue-2.4.0.js"></script>
+    <style>
+        /* div {
+            text-align: center;
+        } */
+        
+        #app {
+            margin: 0 auto;
+        }
+        
+        .red {
+            color: red;
+            /* background-color: blueviolet; */
+        }
+        
+        .size {
+            font-size: 100px;
+            color: blueviolet;
+            text-align: center;
+            /* background-color: red; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="red" :class="aaa">你是猪</h1>
+        <button @click="qh" style="display: block">按钮</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                aaa: {
+                    size: null
+                },
+
+            },
+            methods: {
+                qh() {
+
+                    this.aaa.size = !this.aaa.size
+
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

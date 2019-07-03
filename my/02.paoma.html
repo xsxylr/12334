@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../code/lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="lang" :disabled="dj">开始</button>
+        <button v-on:click="jieshu">结束</button>
+        <h4>
+            {{msg}}
+        </h4>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '你是一只猪,我是跑马灯````!',
+                ds: null,
+                dj: undefined
+            },
+            methods: {
+                lang() {
+                    this.ds = setInterval(() => {
+                        var start = this.msg.substr(0, 1);
+                        var end = this.msg.substr(1);
+                        this.msg = end + start;
+                        this.dj = true;
+                        console.log(this.msg);
+                    }, 1);
+
+                },
+                jieshu() {
+                    clearInterval(this.ds);
+                    this.dj = false;
+                    this.msg = '你是一只猪,我是跑马灯````!'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
